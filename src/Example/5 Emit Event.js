@@ -17,7 +17,6 @@ const lessons = [
 
 function App() {
   const [lessonId, setLessonId] = useState(1);
-  const [lessonName, setLessonName] = useState("");
 
   useEffect(() => {
     const handleComment = ({ detail }) => {
