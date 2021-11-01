@@ -36,10 +36,10 @@ const addTodo = (todo) => {
   };
 };
 
-const deleteTodo = (id) => {
+const deleteTodo = (payload) => {
   return {
     type: DELETE_TODO,
-    id,
+    payload,
   };
 };
 
@@ -63,7 +63,7 @@ const reducer = (state, action) => {
       };
     case DELETE_TODO:
       const newTodos = [...state.todos];
-      newTodos.splice(action.id - 1, 1);
+      newTodos.splice(action.payload - 1, 1);
       return {
         ...state,
         todos: newTodos,
