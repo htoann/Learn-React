@@ -1,14 +1,22 @@
-import Content from "./Content";
-import { ThemeContext } from "./ThemeContext";
-import { useContext } from "react";
+import { actions, useStore } from "./Store";
 
 function App() {
-  const context = useContext(ThemeContext);
+  const [state, dispatch] = useStore();
+  const { todos, todoInput } = state;
 
   return (
     <div className="App" style={{ margin: 100 }}>
-      <Content />
-      <button onClick={context.handleChangeTheme}>Change Theme</button>
+      <h1>Todo List</h1>
+      <input
+        style={{ marginBottom: 20 }}
+        type="text"
+        placeholder="New todo..."
+        value={todoInput}
+        onChange={(e) => dispatch(actions.setTodoInput(e.target.value))}
+      />
+      {todos.map((todo) => (
+        <li key={todo.id}>{todo.title}</li>
+      ))}
     </div>
   );
 }
