@@ -15,12 +15,7 @@ function App() {
 
   const handleEditTodo = (todo, index) => {
     dispatch(actions.setTodoInput(todo.title));
-
     todos.splice(index, 1);
-
-    todos.map((todo, indexTodo) => {
-      return indexTodo === index ? "todoInput" : todo;
-    });
   };
 
   return (

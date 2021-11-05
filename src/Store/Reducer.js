@@ -35,10 +35,7 @@ export function reducer(state, action) {
       };
     case DELETE_TODO:
       const newTodos = [...state.todos];
-
       newTodos.splice(action.payload, 1);
-
-      console.log(newTodos);
 
       return {
         ...state,
