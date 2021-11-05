@@ -1,14 +1,15 @@
-import { ADD_TODO, SET_TODO_INPUT } from "./constants";
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, SET_TODO_INPUT } from "./constants";
 
 export const initState = {
   todos: [
     {
       title: "Learn React",
-      id: 1,
     },
     {
       title: "Playing Fifa Online 4",
-      id: 2,
+    },
+    {
+      title: "Watching TV",
     },
   ],
   todoInput: "",
@@ -24,6 +25,29 @@ export function reducer(state, action) {
     case ADD_TODO:
       return {
         ...state,
+        todos: [
+          ...state.todos,
+          {
+            title: action.payload,
+            id: Math.floor(Math.random() * 10000),
+          },
+        ],
+      };
+    case DELETE_TODO:
+      const newTodos = [...state.todos];
+
+      newTodos.splice(action.payload, 1);
+
+      console.log(newTodos);
+
+      return {
+        ...state,
+        todos: newTodos,
+      };
+    case EDIT_TODO:
+      return {
+        ...state,
+        todo: action.payload,
       };
     default: {
       throw new Error("Error");
